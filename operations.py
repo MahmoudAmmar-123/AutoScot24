@@ -16,8 +16,8 @@ class Operations:
         """
         Finds the average listing selling price per seller type
         """
-        operations = AverageListing(self.listings)
-        self.avg_listing = operations.generate_dict_avg_listing()
+        self.operations = AverageListing(self.listings)
+        self.avg_listing = self.operations.generate_dict_avg_listing()
 
     def percentile_distribution(self):
         """
