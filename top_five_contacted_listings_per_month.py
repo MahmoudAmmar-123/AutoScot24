@@ -1,7 +1,3 @@
-from datetime import datetime
-from itertools import islice
-
-import operator
 
 
 class TopFiveContactedListingsPerMonth:
@@ -104,57 +100,3 @@ class TopFiveContactedListingsPerMonth:
                 )
 
         return all_months
-
-    @staticmethod
-    def convert_contact_date_to_readable_format(csv_data):
-        """
-        Converts the unix timestamp to readable date, and gets a 
-        list that contains the readable_dates with its listing_id
-
-        The final list all_contacts_table will look like:
-        [
-            [listing_id_1, readable_date_1],
-            [listing_id_2, readable_date_2], ...
-        ]
-        """
-        # all_contacts_table with proper unix timestamp digit numbers
-        csv_data = [[csv_data[0], csv_data[1]] for csv_data in csv_data]
-        all_contacts_table = TopFiveContactedListingsPerMonth.adjust_unix_timestamp(
-            csv_data)
-
-        # all_contacts_table with readable timestamp
-        for index in range(len(all_contacts_table)):
-            all_contacts_table[index][1] = datetime.utcfromtimestamp(
-                all_contacts_table[index][1]).strftime('%Y-%m')
-
-        return all_contacts_table
-
-    @staticmethod
-    def adjust_unix_timestamp(all_contact_dates_list):
-        """
-        Brings each timestamp in the contact_date 
-        back to unix timestamps range
-
-        Parameters
-        ----------
-        all_contact_dates_list : list
-            contains listing_id and contact_date 
-            in unix timestamp
-
-        Return
-        ----------
-        all_contact_dates_list : list
-            contains listing_id and contact_date 
-            in readable format
-        """
-        for index in range(len(all_contact_dates_list)):
-            digits_in_unix_timestamp = 10
-            number_to_divide_with = '1'
-            date = len(str(all_contact_dates_list[index][1]))
-            if int(date) > digits_in_unix_timestamp:
-                zeros_to_remove = date-digits_in_unix_timestamp
-                number_to_divide_with = int(
-                    number_to_divide_with.ljust(zeros_to_remove+1, '0'))
-                all_contact_dates_list[index][1] = int(int(all_contact_dates_list[index][1]) / number_to_divide_with)
-
-        return all_contact_dates_list

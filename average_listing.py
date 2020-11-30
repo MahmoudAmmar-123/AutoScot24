@@ -1,4 +1,5 @@
 
+
 class AverageListing:
     """
     Finds the average listing selling price per 

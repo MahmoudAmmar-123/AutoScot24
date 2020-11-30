@@ -1,7 +1,7 @@
 import csv
 import sqlite3
 
-from top_five_contacted_listings_per_month import TopFiveContactedListingsPerMonth
+from operations import Operations
 
 
 class DataBase:
@@ -138,8 +138,9 @@ class ContactsDataBase(DataBase):
             dr = csv.DictReader(csv_file)
             to_db = [(i['listing_id'], i['contact_date']) for i in dr]
 
-        to_db = TopFiveContactedListingsPerMonth.convert_contact_date_to_readable_format(to_db)
+        to_db = Operations.convert_contact_date_to_readable_format(to_db)
 
         self.cur.executemany(
             "INSERT INTO Contacts (listing_id, contact_date) VALUES (?, ?);", to_db)
         self.conn.commit()
+        
