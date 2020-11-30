@@ -20,4 +20,4 @@ nosetests unittests/*.py
 - Each operation is in a class
 - unitests have their own tesr files
 
-![Alt text](relative/path/to/uml.png?raw=true "uml")
+![Screenshot](uml.png)
