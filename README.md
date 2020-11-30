@@ -1,4 +1,4 @@
-# AutoScot24
+# AutoScout24
 
 
 ## Running the code
