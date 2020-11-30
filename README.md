@@ -4,7 +4,7 @@
 ## Running the code
 
 ```bash
-python3 main.py
+python3 constructor.py
 ```
 
 
