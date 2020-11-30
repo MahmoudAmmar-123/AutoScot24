@@ -28,7 +28,7 @@ class AverageListing:
         average_price : int
             calculated average price for each seller_type
         """
-        price = self.listing.get_price_with_seller_type(seller_type)
+        price = self.listing.quer_component_using_column("price", "seller_type", "Listings", seller_type)
         price_list = [price[0] for price in price]
         average_price = int(sum(price_list)/len(price_list))
 

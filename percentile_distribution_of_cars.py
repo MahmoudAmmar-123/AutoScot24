@@ -14,28 +14,8 @@ class PercentileDistributionOfCars:
 
     def __init__(self, listing):
         self.listing = listing
-        self.available_make = []
 
-        self.find_available_make()
-
-    def find_available_make(self):
-        """
-        Finds all the avilable non-duplicate make in the 
-        database listing.db
-
-        The final list available_make will look like:
-        [make_1, make_2, ...]
-        """
-        all_make = self.listing.get_all_make()
-        all_make_list = [all_make[0] for all_make in all_make]
-
-        for car in all_make_list:
-            if car not in self.available_make:
-                self.available_make.append(car)
-
-        self.number_of_make = len(all_make_list)
-
-    def percentile_distribution(self, make):
+    def percentile_distribution(self, make_name):
         """
         Calculates the percentile distribution of 
         a specified make
@@ -50,10 +30,11 @@ class PercentileDistributionOfCars:
         percentile : int
             the percentile of the specified make
         """
-        make = self.listing.get_make_with_make(make)
+        make = self.listing.quer_component_using_column("make", "make", "Listings", make_name)
         make_list = [make[0] for make in make]
+        total_number_of_make = self.listing.quer_number_of_rows_for_column("make", "Listings")
 
-        return int(len(make_list) / self.number_of_make * 100)
+        return round((len(make_list) / total_number_of_make) * 100, 2)
 
     def generate_dict_percentile_distribution(self):
         """
@@ -66,7 +47,8 @@ class PercentileDistributionOfCars:
             distributions of available cars
         """
         percentile_dict = {}
-        for make in self.available_make:
+        available_make = self.listing.quer_distinct_components("make", "Listings")
+        for make in available_make:
             percentile_dict.update(
                 {make: self.percentile_distribution(make)})
 

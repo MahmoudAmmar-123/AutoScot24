@@ -1,0 +1,11 @@
+id,make,price,mileage,seller_type
+1000,Audi,49717,6500,private
+1001,Mazda,22031,7000,private
+1002,BWM,17742,6000,dealer
+1004,Mazda,25219,3000,other
+1005,Audi,43667,500,private
+1009,Audi,40070,2500,dealer
+1012,Audi,10286,3000,dealer
+1013,Audi,22121,2000,dealer
+1016,Audi,20293,7000,dealer
+1017,Mazda,37726,3500,other

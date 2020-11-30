@@ -1,5 +1,4 @@
-from listing_db import ListingDataBase
-from contacts_db import ContactsDataBase
+from database import ListingDataBase, ContactsDataBase
 from average_listing import AverageListing
 from percentile_distribution_of_cars import PercentileDistributionOfCars
 from average_price_thirty_percent import AveragePriceThirtyPercent
@@ -25,10 +24,10 @@ class Main:
         """
         Operations for converting the csv input files into database
         """
-        self.listing = ListingDataBase()
-        self.listing.create_listing_db()
-        self.contacts = ContactsDataBase()
-        self.contacts.create_contacts_db()
+        self.listing = ListingDataBase("./output/listings.db")
+        self.listing.insert_csv_into_db("./input/listings.csv")
+        self.contacts = ContactsDataBase("./output/contacts.db")
+        self.contacts.insert_csv_into_db("./input/contacts.csv")
 
     def average_listing_selling_price(self):
         """
@@ -51,7 +50,7 @@ class Main:
         """
         average_price_thirty_percent = AveragePriceThirtyPercent(
             self.contacts, self.listing)
-        self.thirty_percent = average_price_thirty_percent.find_prices_of_top_thirty_percent()
+        self.thirty_percent = average_price_thirty_percent.find_average_of_top_percentile(30/100)
 
     def top_five_contacted_listings_per_month(self):
         """
