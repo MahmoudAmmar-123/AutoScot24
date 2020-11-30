@@ -19,3 +19,5 @@ nosetests unittests/*.py
 - The csv files are transfered to databases
 - Each operation is in a class
 - unitests have their own tesr files
+
+![Alt text](relative/path/to/uml.png?raw=true "uml")
