@@ -15,7 +15,7 @@ nosetests unittests/*.py
 ```
 
 
-## Structure
+## General Workflow
 - The csv files are transfered to databases
 - Each main operation is in a class
 - Regarding the output:
